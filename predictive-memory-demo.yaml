@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: predictive-memory-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: predictive-memory-demo
+  template:
+    metadata:
+      labels:
+        app: predictive-memory-demo
+    spec:
+      containers:
+        - name: memory-generator
+          image: python:3.12-alpine
+          command:
+            - python3
+            - -u
+            - -c
+            - |
+              import time
+              sizes = [10, 20, 30, 40, 50, 40, 30, 20]
+              while True:
+                  for size in sizes:
+                      data = bytearray(size * 1024 * 1024)
+                      print(f"Allocated approximately {size} MiB", flush=True)
+                      time.sleep(20)
+                      del data
+          resources:
+            requests:
+              memory: 32Mi
+            limits:
+              memory: 96Mi

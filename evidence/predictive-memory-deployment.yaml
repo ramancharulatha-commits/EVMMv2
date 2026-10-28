@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "3"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"predictive-memory-demo","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"predictive-memory-demo"}},"template":{"metadata":{"labels":{"app":"predictive-memory-demo"}},"spec":{"containers":[{"command":["python3","-u","-c","import time\nsizes = [10, 20, 30, 40, 50, 40, 30, 20]\nwhile True:\n    for size in sizes:\n        data = bytearray(size * 1024 * 1024)\n        print(f\"Allocated approximately {size} MiB\", flush=True)\n        time.sleep(20)\n        del data\n"],"image":"python:3.12-alpine","name":"memory-generator","resources":{"limits":{"memory":"96Mi"},"requests":{"memory":"32Mi"}}}]}}}}
+  creationTimestamp: "2026-10-28T05:54:11Z"
+  generation: 3
+  name: predictive-memory-demo
+  namespace: default
+  resourceVersion: "68004"
+  uid: 82069ad7-3c3c-4bba-85a1-b9c6ebe4d134
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: predictive-memory-demo
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: predictive-memory-demo
+    spec:
+      containers:
+      - command:
+        - python3
+        - -u
+        - -c
+        - |
+          import time
+          sizes = [10, 20, 30, 40, 50, 40, 30, 20]
+          while True:
+              for size in sizes:
+                  data = bytearray(size * 1024 * 1024)
+                  print(f"Allocated approximately {size} MiB", flush=True)
+                  time.sleep(20)
+                  del data
+        image: python:3.12-alpine
+        imagePullPolicy: IfNotPresent
+        name: memory-generator
+        resources:
+          limits:
+            memory: 96Mi
+          requests:
+            memory: 32Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2026-10-28T05:54:11Z"
+    lastUpdateTime: "2026-10-28T05:54:11Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2026-10-28T05:54:11Z"
+    lastUpdateTime: "2026-10-28T06:08:31Z"
+    message: ReplicaSet "predictive-memory-demo-6dfddc8b8c" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 3
+  readyReplicas: 1
+  replicas: 1
+  terminatingReplicas: 0
+  updatedReplicas: 1

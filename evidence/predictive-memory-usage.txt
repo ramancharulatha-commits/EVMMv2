@@ -1,0 +1,2 @@
+NAME                                      CPU(cores)   MEMORY(bytes)
+predictive-memory-demo-6dfddc8b8c-s84k8   3m           43Mi

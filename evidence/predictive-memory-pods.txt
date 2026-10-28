@@ -1,0 +1,2 @@
+NAME                                      READY   STATUS    RESTARTS   AGE   IP            NODE                    NOMINATED NODE   READINESS GATES
+predictive-memory-demo-6dfddc8b8c-s84k8   1/1     Running   0          85s   10.244.0.11   desktop-control-plane   <none>           <none>

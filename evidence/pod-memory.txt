@@ -1,0 +1,4 @@
+NAME                               CPU(cores)   MEMORY(bytes)
+dynamic-memory-test                0m           13Mi
+memory-test-6b5854c5d-h62m9        0m           16Mi
+memory-workload-8685c47d7b-tnb9w   0m           66Mi

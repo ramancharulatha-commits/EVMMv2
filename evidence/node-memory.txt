@@ -1,0 +1,2 @@
+NAME                    CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)
+desktop-control-plane   211m         1%       886Mi           11%

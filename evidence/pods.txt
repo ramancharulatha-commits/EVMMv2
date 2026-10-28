@@ -1,0 +1,4 @@
+NAME                               READY   STATUS    RESTARTS       AGE   IP           NODE                    NOMINATED NODE   READINESS GATES
+dynamic-memory-test                1/1     Running   0              19h   10.244.0.8   desktop-control-plane   <none>           <none>
+memory-test-6b5854c5d-h62m9        1/1     Running   2 (21h ago)    51d   10.244.0.3   desktop-control-plane   <none>           <none>
+memory-workload-8685c47d7b-tnb9w   1/1     Running   8 (102s ago)   51d   10.244.0.7   desktop-control-plane   <none>           <none>

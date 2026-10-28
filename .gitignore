@@ -1,3 +1,12 @@
-# 로그 파일 무시
+# Log files
 *.log
+
+# Existing project-specific exclusion
 modules/global/global_variable.go
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.vscode/

@@ -1,0 +1,63 @@
+Name:             dynamic-memory-test
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             desktop-control-plane/172.18.0.4
+Start Time:       Tue, 27 Oct 2026 10:07:51 +0000
+Labels:           app=dynamic-memory-test
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.8
+IPs:
+  IP:  10.244.0.8
+Containers:
+  memory-generator:
+    Container ID:  containerd://594691404763498f7c22ee340c7bb6f1d5a77c8b2dd6662a704403e83f5fe818
+    Image:         python:3.12-alpine
+    Image ID:      docker.io/library/python@sha256:b64631e04e4920160c50fbe8d8df828f7f35f06f425cb44aa09bca53e708a35a
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      python3
+      -u
+      -c
+      import time
+      blocks = []
+      sizes = [10, 20, 30, 40, 50, 40, 30, 20]
+      while True:
+          for size in sizes:
+              blocks.clear()
+              blocks.append(bytearray(size * 1024 * 1024))
+              print(f"Allocated approximately {size} MiB", flush=True)
+              time.sleep(20)
+
+    State:          Running
+      Started:      Tue, 27 Oct 2026 10:07:52 +0000
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      memory:  100Mi
+    Requests:
+      memory:     32Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-n7hl9 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-n7hl9:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
